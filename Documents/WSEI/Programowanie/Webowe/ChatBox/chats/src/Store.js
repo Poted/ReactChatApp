@@ -1,18 +1,24 @@
 import React from 'react'
 import io from 'socket.io-client'
+import { Container, Avatar } from '@material-ui/core';
 
 export const CTX = React.createContext();
 
+
 const initState = {
     General: [
-       // {from: 'Henry', msg: 'Hello'},
+        //{from: 'Henry', msg: 'Hello'},
        // {from: 'Harry', msg: 'World'},
         //{from: 'Hussein', msg: 'XD'}
     ],
-    Team: [
-       // {from: 'Pjoter', msg: 'It'},
-        //{from: 'Pjoter', msg: 'Works'},
-        //{from: 'Pjoter', msg: 'But is still uglu :c'}
+    Team: [  
+        //{from: 'CptScarecrow', msg: 'Last minutes'},
+       // {from: 'CptScarecrow', msg: 'to go, guys'},
+        //{from: 'Morasiu', msg: 'Oh no..'},
+        //{from: 'KittyKat', msg: 'we’ll die today :c'},
+        //{from: 'SgtJocko', msg: 'it was a honor to play with you!'},
+       // {from: 'pot_e', msg: 'It was to fun play with you, guys'},
+      
     ]
 }
 
@@ -51,8 +57,9 @@ export default function Store(props) {
           });
     }
 
-    const user = 'potaue' + Math.random(100).toFixed(2);
+   // const users = ['potaue', 'richard', 'elon' ]
 
+    const user = 'Morasiu'; //+ Math.random(100).toFixed(2);
 
     return (
         <CTX.Provider value={{allChats, sendChatAction, user}}>

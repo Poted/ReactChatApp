@@ -9,35 +9,51 @@ import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import {CTX} from './Store';
-
-
-//tymczasowe style
-import './Dashboard.css';
+//import './Dashboard.css';
+import { Container, Avatar } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        margin: '50px',
-        padding: theme.spacing(3, 2),
+    container: {
+        backgroundImage: "url('./fanback.png')",
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        height: '700px',
+        width: '2000px',
+    },
 
+
+
+    root: {
+        //marginTop: '50px',
+        margin: 'auto',
+        padding: theme.spacing(3, 2),
+        width: '30%',
+        //height: '30%',
+        backgroundImage: "url('./browntxtr.jpg')",
+        color: 'white',
+    
+        //backgroundPosition: 'center',
+       // backgroundRepeat: 'no-repeat',
+       // backgroundAttachment: 'fixed'
+       //background: '-webkit-linear-gradient(#eee, #333)',
+       //WebkitBackgroundClip: 'text',
+       //WebkitTextFillColor: 'transparent'
     },
 
     header: {
-        backgroundImage: "url('./fantasy-background-city.jpg')",
-        backgroundSize: "110%",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        color: "white"
-        //filter: "blur(10px)"
+        color: "#deBb05",
+        backgroundImage: "url('./div.png')",
     },
 
     list: {
-        backgroundColor: "green"
+       // backdropFilter: 'blur(2px)'
+        //backgroundColor: "green"
     },
     
 
     flex: {
         display: 'flex',
-        alignItems: 'center'
+        alignItems: 'center',
     },
 
     topicWindow: {
@@ -49,15 +65,29 @@ const useStyles = makeStyles(theme => ({
     chatWindow: {
         width: '70%',
         height: '300px',
-        padding: '20px'
+        padding: '20px',
     },
 
     chatBox: {
-        width: '85%'
+        width: '85%',
     },
 
     button: {
+        backgroundImage: 'url(./button.jpg)',
         width: '15%'
+    },
+
+    msg: {
+        marginLeft: '5px',
+        wordWrap: 'break-word',
+        position: 'relative',
+        display: 'inline-block'
+    },
+
+    chip: {
+        backgroundColor: 'gold',
+        fontWeight: 'bold',
+        margin: '0'
     }
     
 }))
@@ -86,22 +116,25 @@ export default function Dashboard() {
                 document.getElementById("sendBtn").click();
             } 
         });
-    
     }
 
     return (
+        
+
+        <Container fixed className={classes.container}>
+
             <Paper className={classes.root}>
-                <div className={classes.header}>
+                <Paper className={classes.header}>
 
                     <Typography variant="h4" component="h4">
-                        Chat App
+                        GhoulNite
                     </Typography>
 
                     <Typography variant="h5" component="h5">
                         {activeTopic}
                     </Typography>
                 
-                </div>
+                </Paper>
 
                 <div className={classes.flex}>
                     <div className={classes.topicWindow}>
@@ -111,8 +144,8 @@ export default function Dashboard() {
                                     <ListItem onClick={e => changeActiveTopic(e.target.innerText)} key={topic} button>
                                         <ListItemText primary={topic} />
                                     </ListItem>
-
-                                ))
+                                    )   
+                                )
                             }
                         </List>
                     </div>
@@ -120,10 +153,14 @@ export default function Dashboard() {
                         {
                             allChats[activeTopic].map((chat, i) => (
                                 <div className={classes.flex} key={i}>
-                                    <Chip label={chat.from} className={classes.chip}/>
-                                    <Typography variant='body1' gutterBottom>
-                                        {chat.msg}
-                                    </Typography>
+                                    
+                                    <Chip label={chat.from} className={classes.chip}/> 
+                                  {/*} <Avatar id="a1" src='./avatar1.jpg' /> */}
+                                  
+                                  <Typography className={classes.msg} variant='body1' gutterBottom>
+                                      {chat.msg}
+                                  </Typography>
+                              
                                 </div>
                             ))
                         }
@@ -137,7 +174,7 @@ export default function Dashboard() {
                         className={classes.chatBox}
                         value={textValue}
                         onChange={e => changeTextValue(e.target.value)}
-                    />
+                        />
                     <Button
                         id="sendBtn"
                         variant="contained"
@@ -147,11 +184,13 @@ export default function Dashboard() {
                             sendChatAction({from: user, msg: textValue, topic: activeTopic})
                             changeTextValue('');
                         }}    
-                    >
+                        >
                         Send
                     </Button>
 
                 </div>
             </Paper>
+
+        </Container>
     )
 }

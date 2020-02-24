@@ -11,7 +11,9 @@
     "node-sass": "^4.13.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-height": "^3.0.1",
     "react-scripts": "3.3.0",
+    "react-textgradient": "0.0.2",
     "socket.io": "^2.3.0"
   },
   "scripts": {
